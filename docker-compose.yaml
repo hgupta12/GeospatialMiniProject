@@ -1,27 +1,25 @@
+version: '3'
+
 services:
+  app:
+    image: geo
+    volumes:
+      - .:/backend
+    depends_on:
+      - geospatial
+    ports:
+      - "8000:8000"
+
   geospatial:
-    build: .
+    image: kartoza/postgis
     container_name: geospatial
-    restart: always
     environment:
-      - POSTGRES_PASSWORD=geospatial_password
-      - POSTGRES_USER=geospatial_user
+      - POSTGRES_PASS=123456789
+      - POSTGRES_USER=user001
+      - POSTGRES_DBNAME=gis
     ports:
       - "5432:5432"
     volumes:
       - geospatial_volume:/var/lib/postgresql/data
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: devaanshk840@gmail.com # put your own email here
-      PGADMIN_DEFAULT_PASSWORD: root
-    ports:
-      - "5050:80"
-    volumes:
-      - pgadmin_volume:/var/lib/pgadmin
-
 volumes:
   geospatial_volume:
-  pgadmin_volume:

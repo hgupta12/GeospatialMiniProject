@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'gis',
         'USER': 'user001',
         'PASSWORD': '123456789',
-        'HOST': 'localhost',
+        'HOST': 'geospatial',
         'PORT': '5432'
     }
 }
