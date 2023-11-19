@@ -15,7 +15,7 @@ class PlaceList(ListAPIView):
     filter_backends =   (DistanceToPointFilter,DjangoFilterBackend)
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = Place.objects.all()
         place_type = self.request.query_params.get('type')
         if place_type is not None:
             queryset = queryset.filter(type=place_type)
